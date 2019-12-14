@@ -1,4 +1,4 @@
-const Event = require('../../models/event')
+// const Event = require('../../models/event')
 const User = require('../../models/user')
 
 const {dateToString} = require('../../helpers/date')
@@ -48,7 +48,7 @@ const transformedEvent = async (event) =>{
     }
 }
 
-const productResource = async (product) =>{
+const inventoryResource = async (product) =>{
     return {
         ...product._doc,
         // creator:user.bind(this,event.creator),
@@ -67,7 +67,7 @@ const transformedBooking = booking => {
 }
 
 // exports.user = user;
-exports.productResource = productResource;
+exports.inventoryResource = inventoryResource;
 exports.transformedEvent = transformedEvent;
 exports.transformedBooking = transformedBooking;
 // exports.events = events;

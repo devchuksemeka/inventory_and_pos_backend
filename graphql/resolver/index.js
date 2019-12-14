@@ -1,13 +1,11 @@
 const authResolver = require('./auth')
-const productsResolver = require('./product')
-const eventsResolver = require('./events')
-const bookingResolver = require('./booking')
+const inventoryResolver = require('./inventory')
+// const eventsResolver = require('./events')
+// const bookingResolver = require('./booking')
 
 const rootResolver = {
     ...authResolver,
-    ...productsResolver,
-    ...eventsResolver,
-    ...bookingResolver
+    ...inventoryResolver,
 }
 
 module.exports = rootResolver;

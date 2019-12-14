@@ -1,7 +1,7 @@
 const { buildSchema } = require('graphql')
 
 module.exports = buildSchema(`
-type Product {
+type Inventory {
     _id: ID!
     name: String!
     quantity_category: String!
@@ -10,18 +10,20 @@ type Product {
     unit_price: Float!
     total_price: Float!
     date: String!
+    category: String!
     createdAt:String!
     updatedAt:String!
 }
 
 
-input ProductInput {
+input InventoryInput {
     name:String!
     quantity_category: String!
     quantity: Float!
     unit_quantity: Float!
     unit_price: Float!
     total_price: Float!
+    category: String!
     date: String!
 }
 
@@ -37,12 +39,15 @@ type AuthData {
 }
 
 type RootQuery {
-    products: [Product!]!
-    product(id:ID!): Product!
+    inventories: [Inventory!]!
+    inventoriesCategories(category:String!): [Inventory!]!
+    inventory(id:ID!): Inventory!
+    
 }
 
 type RootMutation {
-    createProduct(data: ProductInput): Product
+    createInventoryPurchase(data: InventoryInput): Inventory
+    createInventorySale(data: InventoryInput): Inventory
 }
 
 schema{
