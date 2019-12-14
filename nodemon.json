@@ -1,0 +1,9 @@
+{
+    "env":{
+        "NODE_ENV":"development",
+        "MONGO_USER":"devchuks",
+        "MONGO_PASSWORD":"miracle21375",
+        "MONGO_DB":"shago_inventory",
+        "MONGO_HOST":"127.0.0.1"
+    }
+}
