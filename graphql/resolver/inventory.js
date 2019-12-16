@@ -40,13 +40,37 @@ module.exports = {
         inventory_purchase_spread.date = new Date(inventory_purchase_spread.date)
         inventory_purchase_spread.category = "PURCHASE"
         
-        // get the cost price from  the product
         const product = await Product.findById(inventory_purchase_spread.product);
         if(!product) throw new Error("Product Not Found") 
         
         inventory = {
             ...inventory_purchase_spread,
-            price:product.cost_price
+            unit_price:product.cost_price
+        }
+
+        const inventory_purchase = new Inventory(inventory)
+        let createdInventoryPurchase;
+        try{
+            const result = await inventory_purchase.save()
+            createdInventoryPurchase = inventoryResource(result) 
+            return createdInventoryPurchase;
+        }catch(err){
+            console.log(err)
+            throw err;
+        }
+    },
+    createInventorySales: async (args,req)=>{
+
+        const inventory_purchase_spread = {...args.data}
+        inventory_purchase_spread.date = new Date(inventory_purchase_spread.date)
+        inventory_purchase_spread.category = "SALES"
+        
+        const product = await Product.findById(inventory_purchase_spread.product);
+        if(!product) throw new Error("Product Not Found") 
+        
+        inventory = {
+            ...inventory_purchase_spread,
+            unit_price:product.sales_price
         }
 
         const inventory_purchase = new Inventory(inventory)

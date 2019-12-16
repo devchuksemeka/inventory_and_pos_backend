@@ -8,7 +8,11 @@ const modelSchema = new Schema({
         type:Number,
         required:true
     },
-    price:{
+    category:{
+        type: String,
+        required: true
+    },
+    unit_price:{
         type: Number,
         required: true
     },

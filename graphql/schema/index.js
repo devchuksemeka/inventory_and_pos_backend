@@ -78,7 +78,7 @@ type RootQuery {
 
 type RootMutation {
     createInventoryPurchase(data: InventoryPurchaseInput): Inventory!
-    createInventorySale(data: InventorySalesInput): Inventory!
+    createInventorySales(data: InventorySalesInput): Inventory!
     createProduct(data: ProductInput): Product!
 }
 
