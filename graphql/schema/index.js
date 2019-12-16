@@ -75,7 +75,7 @@ type RootQuery {
     inventories: [Inventory!]!
     inventoriesCategories(category:String!): [Inventory!]!
     inventory(id:ID!): Inventory!
-    
+    product(id:ID!): Product!
 }
 
 type RootMutation {

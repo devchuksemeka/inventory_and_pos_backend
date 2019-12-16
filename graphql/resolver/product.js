@@ -14,15 +14,16 @@ module.exports = {
     //         throw err
     //     }
     // },
-    // inventory: async (args,req)=>{
-    //     try{
-    //         const product = await Inventory.findById(args.id)
-    //         return inventoryResource(product)
+    product: async (args,req)=>{
+        try{
+            const product = await Product.findById(args.id)
+            if(!product) throw new Error("Product not found")
+            return productResource(product)
             
-    //     }catch(err){
-    //         throw err
-    //     }
-    // },
+        }catch(err){
+            throw err
+        }
+    },
     createProduct: async (args,req)=>{
 
         const product_spread = {...args.data}
