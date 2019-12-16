@@ -51,6 +51,8 @@ const transformedEvent = async (event) =>{
 const inventoryResource = async (inventory) =>{
     return {
         ...inventory._doc,
+        unit_price:inventory._doc.price,
+        total_price:inventory._doc.price * inventory._doc.quantity,
         // creator:user.bind(this,event.creator),
         date: dateToString(inventory._doc.date)
     }

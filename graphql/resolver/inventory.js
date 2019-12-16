@@ -1,4 +1,5 @@
 const Inventory = require('../../models/Inventory')
+const Product = require('../../models/Product')
 const User = require('../../models/user')
 
 const {inventoryResource} = require('./merge')
@@ -37,9 +38,18 @@ module.exports = {
 
         const inventory_purchase_spread = {...args.data}
         inventory_purchase_spread.date = new Date(inventory_purchase_spread.date)
+        inventory_purchase_spread.category = "PURCHASE"
         
+        // get the cost price from  the product
+        const product = await Product.findById(inventory_purchase_spread.product);
+        if(!product) throw new Error("Product Not Found") 
+        
+        inventory = {
+            ...inventory_purchase_spread,
+            price:product.cost_price
+        }
 
-        const inventory_purchase = new Inventory(inventory_purchase_spread)
+        const inventory_purchase = new Inventory(inventory)
         let createdInventoryPurchase;
         try{
             const result = await inventory_purchase.save()

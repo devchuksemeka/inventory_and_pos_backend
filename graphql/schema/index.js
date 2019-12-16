@@ -34,10 +34,8 @@ input ProductInput {
 
 type Inventory {
     _id: ID!
-    name: String!
-    quantity_category: String!
+    product: String!
     quantity: Float!
-    unit_quantity: Float!
     unit_price: Float!
     total_price: Float!
     date: String!
@@ -47,18 +45,17 @@ type Inventory {
 }
 
 
-input InventoryInput {
-    name:String!
-    quantity_category: String!
+input InventoryPurchaseInput {
+    product: String!
     quantity: Float!
-    unit_quantity: Float!
-    unit_price: Float!
-    total_price: Float!
-    category: String!
     date: String!
 }
 
-
+input InventorySalesInput {
+    product: String!
+    quantity: Float!
+    date: String!
+}
 
 input UserInput {
     email: String!
@@ -80,8 +77,8 @@ type RootQuery {
 }
 
 type RootMutation {
-    createInventoryPurchase(data: InventoryInput): Inventory!
-    createInventorySale(data: InventoryInput): Inventory!
+    createInventoryPurchase(data: InventoryPurchaseInput): Inventory!
+    createInventorySale(data: InventorySalesInput): Inventory!
     createProduct(data: ProductInput): Product!
 }
 
