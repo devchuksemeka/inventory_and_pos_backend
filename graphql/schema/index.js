@@ -75,6 +75,7 @@ type RootQuery {
     inventories: [Inventory!]!
     inventoriesCategories(category:String!): [Inventory!]!
     inventory(id:ID!): Inventory!
+    products: [Product!]! 
     product(id:ID!): Product!
 }
 

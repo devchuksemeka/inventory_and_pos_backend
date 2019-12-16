@@ -4,16 +4,16 @@ const User = require('../../models/user')
 const {productResource} = require('./merge')
 
 module.exports = {
-    // inventories: async ()=>{
-    //     try{
-    //         const products = await Inventory.find()
-    //         return products.map(product=>{
-    //             return inventoryResource(product)
-    //         })
-    //     }catch(err){
-    //         throw err
-    //     }
-    // },
+    products: async ()=>{
+        try{
+            const products = await Product.find()
+            return products.map(product=>{
+                return productResource(product)
+            })
+        }catch(err){
+            throw err
+        }
+    },
     product: async (args,req)=>{
         try{
             const product = await Product.findById(args.id)
@@ -28,7 +28,6 @@ module.exports = {
 
         const product_spread = {...args.data}
         product_spread.date = new Date(product_spread.date)
-        
 
         const product = new Product(product_spread)
         let createdProduct;
