@@ -48,7 +48,15 @@ const transformedEvent = async (event) =>{
     }
 }
 
-const inventoryResource = async (product) =>{
+const inventoryResource = async (inventory) =>{
+    return {
+        ...inventory._doc,
+        // creator:user.bind(this,event.creator),
+        date: dateToString(inventory._doc.date)
+    }
+}
+
+const productResource = async (product) =>{
     return {
         ...product._doc,
         // creator:user.bind(this,event.creator),
@@ -56,19 +64,9 @@ const inventoryResource = async (product) =>{
     }
 }
 
-const transformedBooking = booking => {
-    return {
-        ...booking._doc,
-        createdAt:dateToString(booking._doc.createdAt),
-        updatedAt: dateToString(booking._doc.updatedAt),
-        user:user.bind(this,booking._doc.user),
-        event:singleEvent.bind(this,booking._doc.event) 
-    }
-}
 
 // exports.user = user;
-exports.inventoryResource = inventoryResource;
-exports.transformedEvent = transformedEvent;
-exports.transformedBooking = transformedBooking;
-// exports.events = events;
-// exports.singleEvent = singleEvent;
+module.exports = {
+    inventoryResource,
+    productResource
+}

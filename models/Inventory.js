@@ -8,10 +8,7 @@ const modelSchema = new Schema({
         type:String,
         required:true
     },
-    category: {
-        type:String,
-        required:true
-    },
+    
     quantity: {
         type:Number,
         required:true
@@ -36,6 +33,11 @@ const modelSchema = new Schema({
         type:Date,
         required:true
     },
+    product: 
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+    }
 },
 {
     timestamps:true
