@@ -1,19 +1,21 @@
 const bcrypt = require("bcryptjs")
 const jwt = require('jsonwebtoken');
-const User = require('../../models/user')
+const User = require('../../models/User')
 
 module.exports = {
-    createUser: async args =>{
+    register: async args =>{
         try{
-            const userExisited = await User.findOne({email:args.userInput.email})
+            const {email,password} = args.data
+            const userExisited = await User.findOne({email})
         
             if(userExisited) throw new Error('User exists already')
-            const hashPassword = await bcrypt.hash(args.userInput.password,12)
+            const hashPassword = await bcrypt.hash(password,12)
         
             const user = new User({
-                email:args.userInput.email,
+                email,
                 password:hashPassword
             })
+            
             const result = await user.save()
         
             return {...result._doc,password:null}
@@ -22,8 +24,9 @@ module.exports = {
         }
         
     },
-    login: async ({email,password}) => {
-        const user = await User.findOne({email:email});
+    login: async (args,req) => {
+        const {email,password} = args.data;
+        const user = await User.findOne({email});
 
         if(!user){
             throw new Error("User does not exist");

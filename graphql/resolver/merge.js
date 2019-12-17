@@ -1,5 +1,5 @@
 // const Event = require('../../models/event')
-const User = require('../../models/user')
+const User = require('../../models/User')
 
 const {dateToString} = require('../../helpers/date')
 

@@ -31,7 +31,6 @@ input ProductInput {
     date: String!
 }
 
-
 type Inventory {
     _id: ID!
     product: String!
@@ -62,10 +61,25 @@ input UserInput {
     password: String!
 }
 
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input RegisterInput {
+    email: String!
+    password: String!
+}
+
 type AuthData {
     userId: ID!
     token: String!
     tokenExpiration: Int!
+}
+
+type User {
+    _id: ID!
+    email:String!
 }
 
 type RootQuery {
@@ -77,6 +91,8 @@ type RootQuery {
 }
 
 type RootMutation {
+    register(data: RegisterInput): User!
+    login(data: LoginInput): AuthData!
     createInventoryPurchase(data: InventoryPurchaseInput): Inventory!
     createInventorySales(data: InventorySalesInput): Inventory!
     createProduct(data: ProductInput): Product!
@@ -87,9 +103,3 @@ schema{
     mutation: RootMutation
 }
 `)
-
-// type RootQuery {
-//     products: [Product!]!
-//     # bookings: [Booking!]!
-//     # login(email: String!,password: String!): AuthData!
-// }
