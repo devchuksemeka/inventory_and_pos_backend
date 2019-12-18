@@ -1,4 +1,4 @@
-# EVENT BOOKING API 
+# Inventory & POS Solution API 
 
 ## Technologies
 ### 1. GraphQL 
