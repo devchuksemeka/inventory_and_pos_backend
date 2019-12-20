@@ -1,7 +1,7 @@
-const sum = (a,b) =>{
+const sample_add_product = (a,b) =>{
     return a+b ;
 }
 
-test('adds 1 + 2 to equal 3', () => {
-    expect(sum(1, 2)).toBe(3);
+test('sample_add_product 2 + 3 to equal 5', () => {
+    expect(sample_add_product(2, 3)).toBe(5);
 });
